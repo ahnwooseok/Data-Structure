@@ -1,5 +1,5 @@
 public class Q2 {
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception{
         System.out.println("this is stack using MyArrayList");
 		MyStack stack = new MyStack();
 		for(int i=1;i<=10;i++){
@@ -9,16 +9,19 @@ public class Q2 {
             System.out.print("pop"+i+" : " + stack.pop());
             System.out.println("");
         }
+        // System.out.println(stack.top()); -> exception
 
+        System.out.println("");
         System.out.println("this is queue using MyArrayList");
         MyQueue queue = new MyQueue();
 		for(int i=1;i<=10;i++){
             queue.enqueue(i);
         }
         for(int i=1;i<=10;i++){
-            System.out.print("pop"+i+" : " + queue.dequeue());
+            System.out.print("dequeue"+i+" : " + queue.dequeue());
             System.out.println("");
         }
+        // System.out.println(queue.front()); -> exception
 	}
 }
 
@@ -139,20 +142,20 @@ class MyStack{
     public boolean isEmpty(){
         return arr.isEmpty();
     }
-    public int top(){
+    public int top() throws Exception{
+        Exception enableException = new Exception("empty stack!!");
         if(arr.isEmpty()){
-            System.out.println("stack is empty");
-            return 0;
+            throw enableException;
         }
         return arr.get(arr.size() - 1);
     }
-    public void push(int o){
+    public void push(int o) throws Exception{
         arr.add(o);
     } 
-    public int pop(){
+    public int pop() throws Exception{
+        Exception enableException = new Exception("empty stack!!");
         if(arr.isEmpty()){
-            System.out.println("stack is empty");
-            return 0;
+            throw enableException;
         }
         int ret = arr.remove(arr.size()-1);
         return ret;
@@ -168,22 +171,22 @@ class MyQueue{
     public boolean isEmpty(){
         return arr.isEmpty();
     }
-    public int front(){
+    public int front() throws Exception{
+        Exception enableException = new Exception("empty queue!!");
         if(arr.isEmpty()){
-            System.out.println("queue is empty");
-            return 0;
+            throw enableException;
         }
         else{
             return arr.get(0);
         }
     }
-    public void enqueue(int o){
+    public void enqueue(int o) throws Exception{
         arr.add(o);
     } 
-    public int dequeue(){
+    public int dequeue() throws Exception{
+        Exception enableException = new Exception("empty queue!!");
         if(arr.isEmpty()){
-            System.out.println("queue is empty");
-            return 0;
+            throw enableException;
         }
         else{
             int ret = arr.remove(0);
